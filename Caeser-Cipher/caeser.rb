@@ -1,34 +1,35 @@
-string_in = "Hello World"
+string_in = "Butterfly House"
+
 puts "String to encode: #{string_in}"
 
 transform_one = string_in.bytes
+
 #p transform_one
 
 def cipher(string, change)
   
   puts "Shift factor: #{change}"
 
-  transform_two = string.map do |char|
-      if char <= 90 && char >= 65
-        char = char + change
-          if char > 90
-            char = char - 26
-          else 
-            char
-          end
-      elsif char <= 122 && char >= 97 
-        char = char + change
-          if char > 122
-            char = char - 26
-          else 
-            char
-          end
+  transform_two = string.map do |character|
+
+    new_character = character + change
+
+      if character <= 90 && character >= 65
+        new_character > 90 ? new_character -= 26 : new_character
+      elsif character <= 122 && character >= 97 
+        new_character > 122 ? new_character -= 26 : new_character
       else 
-        char
+        character
       end
+
   end
+
   #p transform_two
-  puts "Encoded string: #{transform_two.map { |char| char.chr }.join}"
+
+  encoded = transform_two.map { |ascii_number| ascii_number.chr }.join
+
+  puts "Encoded string: #{encoded}"
+
 end
 
 cipher(transform_one, 3)
